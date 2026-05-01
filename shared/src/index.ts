@@ -1,7 +1,7 @@
 import { zodToJsonSchema } from 'zod-to-json-schema';
-import { ReviewSchema } from './review-schema.js';
+import { ReviewSchema } from './review-schema';
 
-export * from './review-schema.js';
+export * from './review-schema';
 
 export const reviewJsonSchema = zodToJsonSchema(ReviewSchema, {
   name: 'Review',

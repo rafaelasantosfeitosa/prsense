@@ -3,7 +3,7 @@ const nextConfig = {
   reactStrictMode: true,
   transpilePackages: ['@prsense/shared'],
   experimental: {
-    typedRoutes: true,
+    typedRoutes: false,
   },
 };
 

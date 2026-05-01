@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { ReviewSchema } from './review-schema.js';
+import { ReviewSchema } from './review-schema';
 
 describe('ReviewSchema', () => {
   it('parses valid review', () => {
