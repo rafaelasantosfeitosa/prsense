@@ -1,8 +1,8 @@
 import { type NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
-import { extractBearer, verifyGitHubToken } from '@/lib/github-auth';
-import { OpenRouterError, generateReview } from '@/lib/openrouter';
-import { checkAndIncrementQuota } from '@/lib/quota';
+import { extractBearer, verifyGitHubToken } from '../../../lib/github-auth';
+import { OpenRouterError, generateReview } from '../../../lib/openrouter';
+import { checkAndIncrementQuota } from '../../../lib/quota';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';

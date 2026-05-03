@@ -1,7 +1,7 @@
 import { auth, currentUser } from '@clerk/nextjs/server';
 import { redirect } from 'next/navigation';
-import { Footer } from '@/components/Footer';
-import { Nav } from '@/components/Nav';
+import { Footer } from '../../components/Footer';
+import { Nav } from '../../components/Nav';
 
 export const dynamic = 'force-dynamic';
 

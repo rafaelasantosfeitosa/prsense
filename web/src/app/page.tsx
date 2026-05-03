@@ -1,7 +1,7 @@
 import Link from 'next/link';
-import { Footer } from '@/components/Footer';
-import { Nav } from '@/components/Nav';
-import { ReviewPreview } from '@/components/ReviewPreview';
+import { Footer } from '../components/Footer';
+import { Nav } from '../components/Nav';
+import { ReviewPreview } from '../components/ReviewPreview';
 
 export default function HomePage() {
   return (

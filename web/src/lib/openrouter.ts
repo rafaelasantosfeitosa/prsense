@@ -1,6 +1,6 @@
 import { ReviewSchema, openRouterResponseFormat } from '@prsense/shared';
 import type { Review } from '@prsense/shared';
-import { env } from '@/env';
+import { env } from '../env';
 
 const OPENROUTER_URL = 'https://openrouter.ai/api/v1/chat/completions';
 

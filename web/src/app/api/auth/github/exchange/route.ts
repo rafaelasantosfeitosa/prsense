@@ -1,6 +1,6 @@
 import { type NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
-import { env } from '@/env';
+import { env } from '../../../../../env';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
