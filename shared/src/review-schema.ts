@@ -2,7 +2,12 @@ import { z } from 'zod';
 
 export const RiskAreaSchema = z.object({
   file: z.string().min(1).describe('Path of the file with the risk'),
-  line_start: z.number().int().nonnegative().nullable().describe('Starting line, null if file-level'),
+  line_start: z
+    .number()
+    .int()
+    .nonnegative()
+    .nullable()
+    .describe('Starting line, null if file-level'),
   line_end: z.number().int().nonnegative().nullable().describe('Ending line, null if file-level'),
   severity: z.enum(['low', 'medium', 'high', 'critical']),
   category: z.enum([
@@ -32,7 +37,9 @@ export const ReviewSchema = z.object({
     .max(100)
     .describe('Estimated review complexity. 0=trivial, 100=very complex'),
   risk_areas: z.array(RiskAreaSchema).describe('Concrete risks found in the diff'),
-  questions_for_author: z.array(QuestionSchema).describe('Clarifying questions a reviewer should ask'),
+  questions_for_author: z
+    .array(QuestionSchema)
+    .describe('Clarifying questions a reviewer should ask'),
   test_coverage_note: z
     .string()
     .describe('Assessment of whether tests cover the changes adequately'),

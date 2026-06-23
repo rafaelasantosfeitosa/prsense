@@ -17,9 +17,7 @@ describe('ReviewSchema', () => {
           suggestion: 'Change comparison operator',
         },
       ],
-      questions_for_author: [
-        { question: 'Is rate limiting needed?', context: 'Public endpoint' },
-      ],
+      questions_for_author: [{ question: 'Is rate limiting needed?', context: 'Public endpoint' }],
       test_coverage_note: 'No tests added for auth path',
     };
     expect(() => ReviewSchema.parse(valid)).not.toThrow();

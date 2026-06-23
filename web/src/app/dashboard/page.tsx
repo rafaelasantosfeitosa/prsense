@@ -16,9 +16,33 @@ interface ReviewRow {
 }
 
 const MOCK_HISTORY: ReviewRow[] = [
-  { id: '1', repo: 'rafaelasantosfeitosa/prsense', pr: 12, title: 'feat: add review history endpoint', complexity: 42, risks: 2, createdAt: '2 hours ago' },
-  { id: '2', repo: 'acme/api', pr: 184, title: 'fix: jwt expiry off-by-one', complexity: 18, risks: 1, createdAt: 'yesterday' },
-  { id: '3', repo: 'acme/api', pr: 183, title: 'refactor: extract billing service', complexity: 71, risks: 5, createdAt: '2 days ago' },
+  {
+    id: '1',
+    repo: 'rafaelasantosfeitosa/prsense',
+    pr: 12,
+    title: 'feat: add review history endpoint',
+    complexity: 42,
+    risks: 2,
+    createdAt: '2 hours ago',
+  },
+  {
+    id: '2',
+    repo: 'acme/api',
+    pr: 184,
+    title: 'fix: jwt expiry off-by-one',
+    complexity: 18,
+    risks: 1,
+    createdAt: 'yesterday',
+  },
+  {
+    id: '3',
+    repo: 'acme/api',
+    pr: 183,
+    title: 'refactor: extract billing service',
+    complexity: 71,
+    risks: 5,
+    createdAt: '2 days ago',
+  },
 ];
 
 export default async function DashboardPage() {
@@ -54,7 +78,10 @@ export default async function DashboardPage() {
             </thead>
             <tbody>
               {MOCK_HISTORY.map((r) => (
-                <tr key={r.id} className="border-t border-border/60 transition hover:bg-bg-elevated/60">
+                <tr
+                  key={r.id}
+                  className="border-t border-border/60 transition hover:bg-bg-elevated/60"
+                >
                   <td className="px-5 py-4 font-mono text-xs text-fg-muted">{r.repo}</td>
                   <td className="px-5 py-4">
                     <div className="font-medium">{r.title}</div>

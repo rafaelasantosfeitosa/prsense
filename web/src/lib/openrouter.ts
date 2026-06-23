@@ -85,11 +85,12 @@ async function callModel(model: string, userMessage: string): Promise<Review> {
 }
 
 function buildUserMessage({ diff, prTitle, prDescription, repo }: ReviewInput): string {
-  const truncatedDiff = diff.length > 60_000 ? `${diff.slice(0, 60_000)}\n\n[diff truncated]` : diff;
+  const truncatedDiff =
+    diff.length > 60_000 ? `${diff.slice(0, 60_000)}\n\n[diff truncated]` : diff;
   return [
     `Repository: ${repo}`,
     `PR title: ${prTitle}`,
-    `PR description:`,
+    'PR description:',
     prDescription || '(no description)',
     '',
     'Unified diff:',

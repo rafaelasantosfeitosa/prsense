@@ -17,7 +17,9 @@ interface ReviewRequest {
 chrome.runtime.onMessage.addListener((message: Message, _sender, sendResponse) => {
   void handle(message)
     .then((result) => sendResponse({ ok: true, result }))
-    .catch((err) => sendResponse({ ok: false, error: err instanceof Error ? err.message : 'Unknown error' }));
+    .catch((err) =>
+      sendResponse({ ok: false, error: err instanceof Error ? err.message : 'Unknown error' }),
+    );
   return true;
 });
 

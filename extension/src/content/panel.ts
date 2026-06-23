@@ -65,8 +65,12 @@ export function mountPanel(onReview: () => void): PanelHandle {
 
   shadow.append(style, root);
 
-  root.querySelector<HTMLButtonElement>('[data-action="review"]')?.addEventListener('click', onReview);
-  root.querySelector<HTMLButtonElement>('[data-action="close"]')?.addEventListener('click', () => host.remove());
+  root
+    .querySelector<HTMLButtonElement>('[data-action="review"]')
+    ?.addEventListener('click', onReview);
+  root
+    .querySelector<HTMLButtonElement>('[data-action="close"]')
+    ?.addEventListener('click', () => host.remove());
 
   const body = root.querySelector<HTMLDivElement>('[data-region="body"]');
   if (!body) throw new Error('Panel body not found');

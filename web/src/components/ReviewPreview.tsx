@@ -15,8 +15,8 @@ export function ReviewPreview() {
 
       <div className="space-y-4 p-5 text-sm">
         <p className="text-fg-muted">
-          Adds JWT-based session middleware. Solid implementation; two correctness risks in
-          token expiry comparison and one missing test path.
+          Adds JWT-based session middleware. Solid implementation; two correctness risks in token
+          expiry comparison and one missing test path.
         </p>
 
         <div className="flex items-center gap-3 text-xs text-fg-muted">
@@ -71,9 +71,7 @@ function RiskRow({
   suggestion: string;
 }) {
   return (
-    <div
-      className={`rounded-md border-l-2 bg-bg-elevated/60 p-3 ${SEVERITY_COLOR[severity]}`}
-    >
+    <div className={`rounded-md border-l-2 bg-bg-elevated/60 p-3 ${SEVERITY_COLOR[severity]}`}>
       <div className="flex items-center justify-between gap-2">
         <span className="font-medium">{title}</span>
         <span className="rounded bg-bg px-1.5 py-0.5 font-mono text-[10px] uppercase text-fg-muted">

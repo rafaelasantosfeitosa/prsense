@@ -21,7 +21,11 @@ export default defineManifest({
     },
   ],
   permissions: ['identity', 'storage'],
-  host_permissions: ['https://api.github.com/*', 'https://prsense.app/*', 'http://localhost:3000/*'],
+  host_permissions: [
+    'https://api.github.com/*',
+    'https://prsense.app/*',
+    'http://localhost:3000/*',
+  ],
   icons: {
     '16': 'src/assets/icon-16.png',
     '48': 'src/assets/icon-48.png',

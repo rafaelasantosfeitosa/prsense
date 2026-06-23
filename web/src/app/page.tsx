@@ -39,8 +39,8 @@ function Hero() {
             </span>
           </h1>
           <p className="mt-5 max-w-xl text-lg text-fg-muted">
-            PRsense reviews your pull requests the moment you open them on GitHub. Risks,
-            complexity score, and clarifying questions — right next to the diff.
+            PRsense reviews your pull requests the moment you open them on GitHub. Risks, complexity
+            score, and clarifying questions — right next to the diff.
           </p>
           <div className="mt-7 flex flex-wrap items-center gap-3">
             <Link href="/sign-up" className="btn-primary">
@@ -119,8 +119,16 @@ function Features() {
 function HowItWorks() {
   const steps = [
     { n: '01', t: 'Install the extension', d: 'Two clicks from the Chrome Web Store.' },
-    { n: '02', t: 'Open any GitHub PR', d: 'PRsense panel mounts in a Shadow DOM, no GitHub UI changes.' },
-    { n: '03', t: 'Click Review', d: 'Diff is sent to PRsense, which calls Gemini Flash and returns structured findings.' },
+    {
+      n: '02',
+      t: 'Open any GitHub PR',
+      d: 'PRsense panel mounts in a Shadow DOM, no GitHub UI changes.',
+    },
+    {
+      n: '03',
+      t: 'Click Review',
+      d: 'Diff is sent to PRsense, which calls Gemini Flash and returns structured findings.',
+    },
   ];
   return (
     <section className="py-20">
@@ -151,7 +159,12 @@ function Pricing() {
             name="Free"
             price="$0"
             tagline="For solo devs."
-            features={['5 reviews / month', 'Gemini Flash', 'Public + private repos', 'Community support']}
+            features={[
+              '5 reviews / month',
+              'Gemini Flash',
+              'Public + private repos',
+              'Community support',
+            ]}
             cta="Get started"
             href="/sign-up"
           />
@@ -159,12 +172,7 @@ function Pricing() {
             name="Pro"
             price="$12"
             tagline="For teams shipping daily."
-            features={[
-              'Unlimited reviews',
-              'Priority queue',
-              'Review history',
-              'Email support',
-            ]}
+            features={['Unlimited reviews', 'Priority queue', 'Review history', 'Email support']}
             cta="Start Pro"
             href="/sign-up?plan=pro"
             highlight

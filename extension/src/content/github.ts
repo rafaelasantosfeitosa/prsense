@@ -6,7 +6,9 @@ export interface PrContext {
   description: string;
 }
 
-export function parsePrContextFromUrl(url: string): Omit<PrContext, 'title' | 'description'> | null {
+export function parsePrContextFromUrl(
+  url: string,
+): Omit<PrContext, 'title' | 'description'> | null {
   const match = url.match(/^https:\/\/github\.com\/([^/]+)\/([^/]+)\/pull\/(\d+)/);
   if (!match) return null;
   const owner = match[1];
@@ -16,7 +18,12 @@ export function parsePrContextFromUrl(url: string): Omit<PrContext, 'title' | 'd
   return { owner, repo, number: Number.parseInt(numStr, 10) };
 }
 
-export async function fetchPrDiff(owner: string, repo: string, number: number, token: string): Promise<string> {
+export async function fetchPrDiff(
+  owner: string,
+  repo: string,
+  number: number,
+  token: string,
+): Promise<string> {
   const res = await fetch(`https://api.github.com/repos/${owner}/${repo}/pulls/${number}`, {
     headers: {
       Authorization: `Bearer ${token}`,
