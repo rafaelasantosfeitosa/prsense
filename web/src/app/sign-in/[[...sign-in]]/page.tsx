@@ -10,8 +10,8 @@ export default function SignInPage() {
           <p className="text-sm font-semibold text-brand">Demo mode</p>
           <h1 className="mt-2 text-2xl font-bold">Auth is not configured yet</h1>
           <p className="mt-3 text-sm text-fg-muted">
-            PRsense can run the public landing and review API smoke tests without Clerk. Add Clerk
-            keys to enable sign in and the dashboard.
+            PRSense can run the public landing and review API smoke tests without Clerk. Set
+            NEXT_PUBLIC_ENABLE_CLERK=true plus Clerk keys to enable sign in and the dashboard.
           </p>
           <Link href="/" className="btn-primary mt-6 inline-flex">
             Back to home
