@@ -2,7 +2,7 @@ import { API_BASE_URL, GITHUB_CLIENT_ID, STORAGE_KEYS } from '../config';
 import { challengeFromVerifier, randomVerifier } from './pkce';
 
 const GITHUB_AUTHORIZE_URL = 'https://github.com/login/oauth/authorize';
-const SCOPES = 'read:user repo';
+const SCOPES = 'read:user';
 
 export async function signIn(): Promise<string> {
   if (!GITHUB_CLIENT_ID) {

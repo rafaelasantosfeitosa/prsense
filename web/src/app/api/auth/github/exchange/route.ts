@@ -1,25 +1,48 @@
-import { type NextRequest, NextResponse } from 'next/server';
+import type { NextRequest } from 'next/server';
 import { z } from 'zod';
 import { env } from '../../../../../env';
+import {
+  clientIp,
+  contentLengthExceeds,
+  hasJsonContentType,
+  noStoreJson,
+} from '../../../../../lib/api-response';
+import { checkAndIncrementRateLimit } from '../../../../../lib/quota';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 
 const BodySchema = z.object({
-  code: z.string().min(1),
-  code_verifier: z.string().min(1),
+  code: z.string().min(1).max(2_048),
+  code_verifier: z.string().min(43).max(128),
 });
 
 export async function POST(req: NextRequest) {
+  if (contentLengthExceeds(req, env.AUTH_EXCHANGE_MAX_BODY_BYTES)) {
+    return noStoreJson({ error: 'Request body too large' }, 413);
+  }
+
+  if (!hasJsonContentType(req)) {
+    return noStoreJson({ error: 'Content-Type must be application/json' }, 415);
+  }
+
+  const ipLimit = checkAndIncrementRateLimit(`oauth:${clientIp(req)}`);
+  if (!ipLimit.allowed) {
+    return noStoreJson(
+      { error: 'Too many OAuth exchange requests', resetAt: ipLimit.resetAt },
+      429,
+    );
+  }
+
   if (!env.GITHUB_OAUTH_CLIENT_ID || !env.GITHUB_OAUTH_CLIENT_SECRET) {
-    return NextResponse.json({ error: 'GitHub OAuth not configured' }, { status: 500 });
+    return noStoreJson({ error: 'GitHub OAuth not configured' }, 503);
   }
 
   let body: z.infer<typeof BodySchema>;
   try {
     body = BodySchema.parse(await req.json());
   } catch {
-    return NextResponse.json({ error: 'Invalid body' }, { status: 400 });
+    return noStoreJson({ error: 'Invalid body' }, 400);
   }
 
   const res = await fetch('https://github.com/login/oauth/access_token', {
@@ -35,7 +58,7 @@ export async function POST(req: NextRequest) {
 
   const data = (await res.json()) as { access_token?: string; error?: string };
   if (!res.ok || !data.access_token) {
-    return NextResponse.json({ error: data.error ?? 'Exchange failed' }, { status: 400 });
+    return noStoreJson({ error: 'Exchange failed' }, 400);
   }
-  return NextResponse.json({ access_token: data.access_token }, { status: 200 });
+  return noStoreJson({ access_token: data.access_token }, 200);
 }

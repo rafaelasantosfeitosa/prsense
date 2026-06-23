@@ -1,3 +1,5 @@
+import { env } from '../env';
+
 interface GitHubUser {
   id: number;
   login: string;
@@ -19,6 +21,15 @@ export async function verifyGitHubToken(token: string): Promise<GitHubUser> {
   }
   const data = (await res.json()) as { id: number; login: string };
   return { id: data.id, login: data.login };
+}
+
+export function isAllowedGitHubLogin(login: string): boolean {
+  const allowlist = env.GITHUB_LOGIN_ALLOWLIST.split(',')
+    .map((item) => item.trim().toLowerCase())
+    .filter(Boolean);
+
+  if (allowlist.length === 0) return false;
+  return allowlist.includes(login.toLowerCase());
 }
 
 export function extractBearer(headerValue: string | null): string | null {
